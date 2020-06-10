@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+# logs
+/log/ErrorLogger.txt
+/log/RequestLogger.txt
+
 # production
 /build
 /logs
