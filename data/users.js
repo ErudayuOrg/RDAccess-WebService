@@ -5,7 +5,7 @@ const sampleUsers = [
         "userPassword": "Helloworld",
         "userDesignation": "professor",
         "userDepartment":"CSE",
-        "projects":['PR1001','PR1003']
+        "projects":['PR100001','PR100003']
     },
     {
         "userId": "CSEANI2008",
@@ -13,7 +13,7 @@ const sampleUsers = [
         "userPassword": "Helloworld",
         "userDesignation": "professor",
         "userDepartment":"CSE",
-        "projects":['PR1001','PR1005']
+        "projects":['PR100001','PR100005']
     },
     {
         "userId": "CSEJAY2008",
@@ -21,7 +21,7 @@ const sampleUsers = [
         "userPassword": "Helloworld",
         "userDesignation": "professor",
         "userDepartment":"CSE",
-        "projects":['PR1003','PR1005']
+        "projects":['PR100003','PR100005']
     },
 ]
 

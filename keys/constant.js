@@ -1,5 +1,6 @@
 const COLLECTION_NAME = {
-    USERS:"Users"
+    USERS:"Users",
+    PROJECTS:"Projects"
 };
 
 module.exports = {COLLECTION_NAME};
