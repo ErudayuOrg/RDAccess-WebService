@@ -16,6 +16,14 @@ projectService.insertScript = () => {
         })
 }
 
+projectService.getProjectsByLabId = labId => {
+    return projectModel.getProjectsByLabId(labId)
+        .then(response => {
+            if(response) return response;
+            throw new ApiError("Project not found", 404);
+        });
+}
+
 projectService.getProjectById = projectId => {
     return projectModel.getProjectById(projectId)
         .then(response => {

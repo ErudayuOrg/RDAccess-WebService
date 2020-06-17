@@ -12,6 +12,12 @@ projectRouter.get("/restore-default-projects", (req, res, next) => {
         .catch(error => next(error));
 });
 
+projectRouter.get("/lab/:labId",(req, res, next) => {
+    projectService.getProjectsByLabId(req.params.labId)
+        .then(response => res.send(response))
+        .catch(error => next(error));
+});
+
 projectRouter.get("/overview/:projectId",(req, res, next) => {
     projectService.getProjectById(req.params.projectId)
         .then(response => res.send(response))

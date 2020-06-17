@@ -13,10 +13,7 @@ const userObj = {
     "userPassword": { type: String, required: true },
     "userDesignation": { type: String, required: true },
     "userDepartment": { type: String},
-    "projects": {
-        type: [{ type: String, required: true }],
-        default: []
-    }
+    "userDepartmentId": { type: String}
 };
 
 const projectObj = {
@@ -38,10 +35,22 @@ const projectObj = {
     "views":{ type: Number, default: 0 },
 };
 
+const departmentObj = {
+    "departmentId":{ type:String, required:true },
+    "departmentName": { type:String, required:true },
+    "researchLab": { 
+        type: [{
+            "researchLabId": { type: String, required: true },
+            "researchLabName": { type: String, required: true }
+        }],
+        required: true
+    }
+};
+
 const connection = {};
 const usersSchema = new Schema(userObj, { collection: "Users", timestamps: true });
 const projectsSchema = new Schema(projectObj, { collection: "Projects", timestamps: true });
-
+const DepartmentsSchema = new Schema(departmentObj, { collection: "Departments", timestamps: true });
 
 connection.getCollection = collectionName => {
     return mongoose.connect("mongodb://localhost:27017/RandDDB", 
@@ -49,6 +58,7 @@ connection.getCollection = collectionName => {
         switch (collectionName){
             case COLLECTION_NAME.USERS: return db.model(collectionName, usersSchema);
             case COLLECTION_NAME.PROJECTS: return db.model(collectionName, projectsSchema);
+            case COLLECTION_NAME.DEPARTMENTS: return db.model(collectionName, DepartmentsSchema);
         }
     }).catch(err => {
         let error = new Error("Could not connect to database")

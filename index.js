@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const userRouter = require("./route/user.routes");
 const projectRouter = require("./route/project.routes");
+const departmentRouter = require("./route/department.routes");
 
 const requestLogger = require("./utils/requestLogger");
 const errorLogger = require("./utils/errorLogger");
@@ -16,6 +17,7 @@ app.use(requestLogger);
 app.use(bodyParser.json());
 app.use('/user',userRouter);
 app.use('/project',projectRouter);
+app.use('/department',departmentRouter);
 app.use(errorLogger);
 
 

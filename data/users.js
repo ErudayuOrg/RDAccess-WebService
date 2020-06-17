@@ -4,24 +4,24 @@ const sampleUsers = [
         "userName": "Mrs.Kaladevi",
         "userPassword": "Helloworld",
         "userDesignation": "professor",
-        "userDepartment":"CSE",
-        "projects":['PR100001','PR100003']
+        "userDepartmentId":"CSE",
+        "userDepartment":"Computer Science & Engineering"
     },
     {
         "userId": "CSEANI2008",
         "userName": "Mrs.Anitha Ilavarasi",
         "userPassword": "Helloworld",
         "userDesignation": "professor",
-        "userDepartment":"CSE",
-        "projects":['PR100001','PR100005']
+        "userDepartmentId":"CSE",
+        "userDepartment":"Computer Science & Engineering"
     },
     {
         "userId": "CSEJAY2008",
         "userName": "Mrs.Jayanthi",
         "userPassword": "Helloworld",
         "userDesignation": "professor",
-        "userDepartment":"CSE",
-        "projects":['PR100003','PR100005']
+        "userDepartmentId":"CSE",
+        "userDepartment":"Computer Science & Engineering"
     },
 ]
 

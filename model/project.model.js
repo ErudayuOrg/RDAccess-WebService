@@ -16,6 +16,12 @@ projectModel.insertSampleProjects = () => {
         .then(response => response);
 }
 
+projectModel.getProjectsByLabId = labId => {
+    return collection.getCollection(COLLECTION_NAME.PROJECTS)
+        .then(model => model.find({projectLab:labId}))
+        .then(response =>  response);
+}
+
 projectModel.getProjectById = projectId => {
     return collection.getCollection(COLLECTION_NAME.PROJECTS)
         .then(model => model.findOne({projectId}))
