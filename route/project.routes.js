@@ -24,4 +24,16 @@ projectRouter.get("/overview/:projectId",(req, res, next) => {
         .catch(error => next(error));
 });
 
+projectRouter.post("/create-new",(req, res, next) => {
+    projectService.createNewProject(req.body)
+        .then(response => res.send(response))
+        .catch(error => next(error));
+});
+
+projectRouter.put("/update/:projectId",(req, res, next) => {
+    projectService.updateProjectById(req.body,req.params.projectId)
+        .then(response => res.send(response))
+        .catch(error => next(error));
+});
+
 module.exports = projectRouter;

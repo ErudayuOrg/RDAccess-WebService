@@ -22,4 +22,16 @@ userModel.getUserById = userId => {
         .then(response =>  response);
 }
 
+userModel.getProjectsByUserId = userId => {
+    return collection.getCollection(COLLECTION_NAME.PROJECTS)
+        .then(model => model.find({team:userId}))
+        .then(response =>  response);
+}
+
+userModel.getAllUserId = (userId) => {
+    return collection.getCollection(COLLECTION_NAME.USERS)
+        .then(model => model.find({userId:{$regex: userId}},{userId:1,_id:0}).limit(5))
+        .then(response =>  response);
+}
+
 module.exports = userModel;

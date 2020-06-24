@@ -4,4 +4,11 @@ const COLLECTION_NAME = {
     DEPARTMENTS:"Departments"
 };
 
-module.exports = {COLLECTION_NAME};
+const ID_PREFIX = {
+    PROJECT:"PR"
+}
+
+const JWT_KEY = {
+    SECRET:"USER_SECRET"
+}
+module.exports = {COLLECTION_NAME, JWT_KEY, ID_PREFIX};

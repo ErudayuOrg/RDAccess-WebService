@@ -33,6 +33,15 @@ const projectObj = {
     "projectTitle": { type: String, required: true },
     "projectSummary": { type: String, required: true },
     "views":{ type: Number, default: 0 },
+    "status":{ type: String, default: 'Ongoing' },
+    "referenceLink": { 
+        type: [{ type: String, required: true }],
+        default:[]
+    },
+    "keywords": { 
+        type: [{ type: String, required: true }],
+        default:[]
+    },
 };
 
 const departmentObj = {

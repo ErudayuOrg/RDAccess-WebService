@@ -27,4 +27,21 @@ projectModel.getProjectById = projectId => {
         .then(model => model.findOne({projectId}))
         .then(response =>  response);
 }
+
+projectModel.getAllProjects = () => {
+    return collection.getCollection(COLLECTION_NAME.PROJECTS)
+        .then(model => model.find())
+        .then(response =>  response);
+}
+
+projectModel.createNewProject = (projectDetails) => {
+    return collection.getCollection(COLLECTION_NAME.PROJECTS)
+        .then(model => model.create(projectDetails))
+        .then(response =>  response);
+}
+projectModel.updateProjectById = (projectDetails,projectId) => {
+    return collection.getCollection(COLLECTION_NAME.PROJECTS)
+        .then(model => model.findOneAndUpdate({projectId},{$set:{...projectDetails}},{new:true}))
+        .then(response =>  response);
+}
 module.exports = projectModel;
