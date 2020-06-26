@@ -1,5 +1,6 @@
 const express = require("express");
 const usersService = require("../service/user.service");
+const {userAuth} = require('../middleware/auth.middleware');
 
 const userRouter = express.Router();
 
@@ -18,19 +19,19 @@ userRouter.post("/login", (req, res, next) => {
     .catch(error => next(error));
 });
 
-userRouter.get("/profile/:userId", (req, res, next) => {
+userRouter.get("/profile/:userId", userAuth, (req, res, next) => {
     usersService.getUserDetails(req.params.userId)
     .then(response => res.send(response))
     .catch(error => next(error));
 });
 
-userRouter.get("/projects/:userId", (req, res, next) => {
+userRouter.get("/projects/:userId", userAuth, (req, res, next) => {
     usersService.getProjectsByUserId(req.params.userId)
     .then(response => res.send(response))
     .catch(error => next(error));
 });
 
-userRouter.get("/match-userId/:userId", (req, res, next) => {
+userRouter.get("/match-userId/:userId", userAuth, (req, res, next) => {
     usersService.getMatchingUserId(req.params.userId)
     .then(response => res.send(response))
     .catch(error => next(error));

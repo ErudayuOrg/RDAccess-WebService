@@ -1,5 +1,6 @@
 const express = require("express");
 const projectService = require("../service/project.service");
+const {userAuth} = require('../middleware/auth.middleware');
 
 const projectRouter = express.Router();
 
@@ -12,27 +13,27 @@ projectRouter.get("/restore-default-projects", (req, res, next) => {
         .catch(error => next(error));
 });
 
-projectRouter.get("/lab/:labId",(req, res, next) => {
+projectRouter.get("/lab/:labId", userAuth, (req, res, next) => {
     projectService.getProjectsByLabId(req.params.labId)
         .then(response => res.send(response))
         .catch(error => next(error));
 });
 
-projectRouter.get("/overview/:projectId",(req, res, next) => {
+projectRouter.get("/overview/:projectId", userAuth, (req, res, next) => {
     projectService.getProjectById(req.params.projectId)
         .then(response => res.send(response))
         .catch(error => next(error));
 });
 
-projectRouter.post("/create-new",(req, res, next) => {
+projectRouter.post("/create-new", userAuth, (req, res, next) => {
     projectService.createNewProject(req.body)
-        .then(response => res.send(response))
+        .then(response => res.status(201).send(response))
         .catch(error => next(error));
 });
 
-projectRouter.put("/update/:projectId",(req, res, next) => {
+projectRouter.put("/update/:projectId", userAuth, (req, res, next) => {
     projectService.updateProjectById(req.body,req.params.projectId)
-        .then(response => res.send(response))
+        .then(response => res.status(201).send(response))
         .catch(error => next(error));
 });
 

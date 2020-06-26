@@ -39,9 +39,29 @@ projectModel.createNewProject = (projectDetails) => {
         .then(model => model.create(projectDetails))
         .then(response =>  response);
 }
-projectModel.updateProjectById = (projectDetails,projectId) => {
+
+projectModel.getProjectHistoryById = projectId =>{
+    return collection.getCollection(COLLECTION_NAME.PROJECTS)
+    .then(model => model.findOne({projectId},{history:1, _id:0}))
+    .then(response =>  response);
+}
+
+projectModel.updateProjectById = (projectDetails, projectId) => {
     return collection.getCollection(COLLECTION_NAME.PROJECTS)
         .then(model => model.findOneAndUpdate({projectId},{$set:{...projectDetails}},{new:true}))
         .then(response =>  response);
 }
+
+projectModel.getCountByStatus = (status) => {
+    return collection.getCollection(COLLECTION_NAME.PROJECTS)
+        .then(model => model.find({status},{projectDepartment:1, _id:0}) )
+        .then(response =>  response);
+}
+
+projectModel.getTeams = () => {
+    return collection.getCollection(COLLECTION_NAME.PROJECTS)
+        .then(model => model.find({},{team:1,projectDepartment:1, _id:0}) )
+        .then(response =>  response);
+}
+
 module.exports = projectModel;

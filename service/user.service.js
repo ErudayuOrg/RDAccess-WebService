@@ -29,12 +29,12 @@ userService.loginUser = async loginDetails  => {
             if (isNotMatch)  throw 401; 
             else {
                 const message = `Hi ${userData.userName}`;
-                const payload = { userId: userData.userId, userDesignation: userData.userDesignation };
+                const payload = { userId: userData.userId, userDesignationCode: userData.userDesignationCode };
                 const token = "Bearer " + jwt.sign(payload, JWT_KEY.SECRET, { expiresIn: '1h' });
                 const user = {
                     userId: userData.userId,
                     userName: userData.userName,
-                    userDesignation: userData.userDesignation,
+                    userDesignationCode: userData.userDesignationCode,
                     userDepartmentId: userData.userDepartmentId
                 }
                 return { message, token, user };

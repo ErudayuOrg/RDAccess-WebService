@@ -9,7 +9,8 @@ const sampleProjects = [
         "views":0,
         "status":"Completed",
         "referenceLink": ["https://storm.cis.fordham.edu/~gweiss/selected-papers.html","https://ieeexplore.ieee.org/document/4488480"],
-        "keywords":["data","algorithm"]
+        "keywords":["data","algorithm"],
+        "history":[{"commitMessage":"Project created","userId":"CSEKAL2008"}]
     },
     {
         "projectId": "PR100002",
@@ -21,11 +22,12 @@ const sampleProjects = [
         "views":0,
         "status":"Ongoing",
         "referenceLink": ["https://ieeexplore.ieee.org/document/4488480"],
-        "keywords":["data mining"]
+        "keywords":["data mining"],
+        "history":[{"commitMessage":"Project created","userId":"CSEJAY2008"}]
     },
     {
         "projectId": "PR100003",
-        "team": ["CSEANI2008","CSEJAY2008"],
+        "team": ["CSEANI2008","CSEJAY2008","A116965"],
         "projectDepartment": ["CSE"],
         "projectLab": ["cser1"],
         "projectTitle":"Data mining project3",
@@ -33,7 +35,8 @@ const sampleProjects = [
         "views":0,
         "status":"Ongoing",
         "referenceLink": ["https://ieeexplore.ieee.org/document/7889911"],
-        "keywords":["algorithm"]
+        "keywords":["algorithm"],
+        "history":[{"commitMessage":"Project created","userId":"CSEANI2008"}]
     }
 ]
 

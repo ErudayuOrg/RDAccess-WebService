@@ -12,6 +12,7 @@ const userObj = {
     "userName": { type: String, required: true },
     "userPassword": { type: String, required: true },
     "userDesignation": { type: String, required: true },
+    "userDesignationCode": { type: String, required: true },
     "userDepartment": { type: String},
     "userDepartmentId": { type: String}
 };
@@ -41,6 +42,14 @@ const projectObj = {
     "keywords": { 
         type: [{ type: String, required: true }],
         default:[]
+    },
+    "history": { 
+        type: [{
+            "commitMessage":{ type: String, required: true },
+            "userId":{ type: String, required: true },
+            "updatedDate":{ type:Date, default:Date.now}
+        }],
+        required:true
     },
 };
 

@@ -54,11 +54,15 @@ projectService.createNewProject = projectDetails => {
 }
 
 projectService.updateProjectById = (projectUpdates,projectId) => {
-    return projectModel.updateProjectById(projectUpdates,projectId)
+    return projectModel.getProjectHistoryById(projectId)
+    .then( historyResponse => {
+        projectUpdates.history = [projectUpdates.history, ...historyResponse.history];
+        return projectUpdates;
+        })
+        .then( projectDetails => projectModel.updateProjectById(projectDetails, projectId))
         .then(response => {
-            console.log(response);
-            if(response) return response;
-            throw new ApiError("Project not found", 404);
+            if(response) return {response, message :`Project #${response.projectId} updated successfully`};
+            throw new ApiError("Project not updated", 403);
         });
 }
 
