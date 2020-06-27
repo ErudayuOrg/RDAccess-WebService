@@ -36,10 +36,16 @@ projectService.getProjectById = projectId => {
 }
 
 projectService.createNewProject = projectDetails => {
-    console.log(projectDetails);
     return projectModel.getAllProjects().then( allProjects => allProjects.length )
         .then( count => serviceUtils.generateId(ID_PREFIX.PROJECT,count) )
         .then( projectId =>{
+            //ui should send createdAt date
+            let history =[{
+                            commitMessage:'Project created',
+                            userId : projectDetails.team[0],
+                            updatedDate : projectDetails.createdAt
+                        }];
+            projectDetails.history = history;
             return projectModel.createNewProject({projectId, ...projectDetails})
                 .then(response => {
                     if(response) return response;
@@ -49,8 +55,6 @@ projectService.createNewProject = projectDetails => {
         .then( response =>{
             return {message :`Project #${response.projectId} created successfully`};
         });
-
-    
 }
 
 projectService.updateProjectById = (projectUpdates,projectId) => {

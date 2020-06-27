@@ -20,6 +20,20 @@ userService.insertScript = () => {
         })
 }
 
+userService.createUser = userDetails => {
+    return userModel.getUserById(userDetails.userId)
+        .then(response => {
+            if(response) throw new ApiError("UserId already exist",400);
+             return true;
+        })
+        .then( canCreate => {
+            if(canCreate){
+                return userModel.createUser(userDetails)
+                .then(response => ({message: `User #${response.userId} created successfully`}) )
+            }
+        })
+} 
+
 userService.loginUser = async loginDetails  => {
     try{
         const userData = await userModel.getUserById(loginDetails.userId);
@@ -30,10 +44,11 @@ userService.loginUser = async loginDetails  => {
             else {
                 const message = `Hi ${userData.userName}`;
                 const payload = { userId: userData.userId, userDesignationCode: userData.userDesignationCode };
-                const token = "Bearer " + jwt.sign(payload, JWT_KEY.SECRET, { expiresIn: '1h' });
+                const token = jwt.sign(payload, JWT_KEY.SECRET);
                 const user = {
                     userId: userData.userId,
                     userName: userData.userName,
+                    userDesignation: userData.userDesignation,
                     userDesignationCode: userData.userDesignationCode,
                     userDepartmentId: userData.userDepartmentId
                 }

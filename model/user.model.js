@@ -16,6 +16,12 @@ userModel.insertSampleUsers = () => {
         .then(response => response);
 }
 
+userModel.createUser = userDetails => {
+    return collection.getCollection(COLLECTION_NAME.USERS)
+        .then(model => model.create(userDetails))
+        .then(response =>  response);
+}
+
 userModel.getUserById = userId => {
     return collection.getCollection(COLLECTION_NAME.USERS)
         .then(model => model.findOne({userId}))

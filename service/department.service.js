@@ -16,7 +16,7 @@ departmentService.insertScript = () => {
             if (response.length > 0) return response.length
             throw new ApiError("Can't insert projects",500);
         })
-}
+};
 
 departmentService.getAllDepartments = () => {
     return departmentModel.getAllDepartments()
@@ -24,7 +24,7 @@ departmentService.getAllDepartments = () => {
             if(response) return response;
             throw new ApiError("Departments not found", 404);
         });
-}
+};
 
 departmentService.getDepartmentSnapshot = () => {
     return departmentModel.getAllDepartments()
@@ -47,19 +47,19 @@ departmentService.getDepartmentSnapshot = () => {
                 return departments.map(dept => {
                     return {completedCount : completedProjects.filter(proj => proj.projectDepartment[0] === dept.departmentId).length,
                             ...dept}  
-                })
+                }) 
             });
         })
         .then(departments =>{
             return projectModel.getTeams().then( projectTeams =>{
                 return departments.map(dept => {
-                   let nestedTeams =  [...projectTeams.filter(proj => proj.projectDepartment[0] === dept.departmentId )]
-                    let uniqueContributors = new Set([].concat(...nestedTeams));
+                   let departmentProjects =  [...projectTeams.filter(proj =>proj.projectDepartment[0] === dept.departmentId)]; 
+                   let uniqueContributors = new Set([].concat(...[...departmentProjects.map(proj => proj.team )]));
                     return {contributors : [...uniqueContributors].length, ...dept}  
                 });
             });
         });
-}
+};
 
 departmentService.getOverAllSnapshot = () => {
     return projectModel.getCountByStatus('Ongoing')
@@ -79,10 +79,29 @@ departmentService.getOverAllSnapshot = () => {
         })
         .then( projects => {
             return departmentModel.getAllDepartments().then( departments =>{
-                projects.ResearchLabs = [].concat(...[...departments.map( dept => dept.researchLab)]).length;
+                projects.researchLabs = [].concat(...[...departments.map( dept => dept.researchLab)]).length;
                 return projects;
             })
         })
-}
+};
+
+
+departmentService.createDepartment = departmentDetail => {
+    return departmentModel.createDepartment(departmentDetail)
+        .then(response => {
+            if(response) return {message: `department #${response.departmentId} created successfully`};
+            throw new ApiError("Department not created", 500);
+        });
+};
+
+departmentService.createResearchLab = (researchLabDetail, departmentId) => {
+    return departmentModel.createResearchLab(researchLabDetail, departmentId)
+        .then(response => {
+            if(response) {
+                return {message: `Research lab created successfully`};
+            }
+            throw new ApiError("Research lab not created", 500);
+        });
+};
 
 module.exports = departmentService;

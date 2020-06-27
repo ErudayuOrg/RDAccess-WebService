@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const {ApiError} = require('../objectCreator/objectCreator');
-const {JWT_KEY} = require('../keys/constant');
+const {JWT_KEY, ROLE_WITH_UPADATE_AUTH} = require('../keys/constant');
 
 const userAuth = (req,res,next)=>{
    try {
@@ -15,8 +15,7 @@ const userAuth = (req,res,next)=>{
 
 const updateAuth = (req,res,next) =>{ 
     try{
-        console.log(req)
-        if( req.auth.userDesignationCode !== 'ADMIN') throw 'Forbidden Access';
+        if( !ROLE_WITH_UPADATE_AUTH.includes(req.auth.userDesignationCode)) throw 'Forbidden Access';
         next();
     }catch(error){
         throw new ApiError(error, 403);

@@ -5,7 +5,7 @@ const serviceUtils = {};
 serviceUtils.mapProjectForUser =  projects =>{
     let result = [];
     if(projects.length > 0)
-        result =  projects.map( ({projectId,projectTitle,status}) => ({projectId,projectTitle,status}) );
+        result =  projects.map( ({projectId,projectTitle,status,createdAt}) => ({projectId,projectTitle,status,createdAt}) );
     return result;
 }
 

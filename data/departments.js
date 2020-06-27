@@ -43,7 +43,7 @@ const sampleDepartments = [
         "researchLab": [
             {
                 "researchLabId": "eeer1",
-                "researchLabName": "ONA SPEED"
+                "researchLabName": "SONA SPEED"
             },
             {
                 "researchLabId": "eeer2",

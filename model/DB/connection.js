@@ -61,7 +61,7 @@ const departmentObj = {
             "researchLabId": { type: String, required: true },
             "researchLabName": { type: String, required: true }
         }],
-        required: true
+        default: []
     }
 };
 

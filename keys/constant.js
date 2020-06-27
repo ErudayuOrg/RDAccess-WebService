@@ -11,4 +11,7 @@ const ID_PREFIX = {
 const JWT_KEY = {
     SECRET:"USER_SECRET"
 }
-module.exports = {COLLECTION_NAME, JWT_KEY, ID_PREFIX};
+
+const ROLE_WITH_UPADATE_AUTH = ['ADMIN'];
+  
+module.exports = {COLLECTION_NAME, JWT_KEY, ID_PREFIX, ROLE_WITH_UPADATE_AUTH};
