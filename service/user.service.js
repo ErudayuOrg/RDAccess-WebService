@@ -87,5 +87,25 @@ userService.getMatchingUserId = userId => {
         });
 } 
 
+userService.updatePassword = (passwords,userId) => {
+    return userModel.getUserById(userId)
+        .then(response => {
+            if(response){
+                if(response.userPassword !== passwords.oldPassword) throw new ApiError("Incorrect old password", 400);
+                return true;
+            }
+        })
+        .then(isoldPasswordCorrect => {
+            if(isoldPasswordCorrect){
+               return userModel.updatePassword(passwords.newPassword, userId)
+               .then( (response) =>{
+                   if(response.userPassword === passwords.newPassword)
+                        return {message: `Password updated successfully`}
+                    throw new ApiError("Password not updated", 500);
+                });
+            }
+        })
+}; 
+
 
 module.exports = userService;

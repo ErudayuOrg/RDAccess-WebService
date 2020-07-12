@@ -43,4 +43,10 @@ userRouter.post("/create", userAuth, updateAuth, (req, res, next) => {
     .catch(error => next(error));
 });
 
+userRouter.put("/update-password/:userId", userAuth, (req, res, next) => {
+    usersService.updatePassword(req.body, req.params.userId)
+    .then(response => res.send(response))
+    .catch(error => next(error));
+});
+
 module.exports = userRouter;

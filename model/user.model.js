@@ -40,4 +40,9 @@ userModel.getAllUserId = (userId) => {
         .then(response =>  response);
 }
 
+userModel.updatePassword = (userPassword, userId) => {
+    return collection.getCollection(COLLECTION_NAME.USERS)
+        .then(model => model.findOneAndUpdate( {userId}, {$set:{userPassword}}, {new:true}) )
+        .then(response =>  response);
+};
 module.exports = userModel;

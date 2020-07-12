@@ -8,7 +8,8 @@ let errorLogger = (err, req, res, next) => {
         fs.appendFile(path.resolve(__dirname, './../log/ErrorLogger.txt'), errorStack , (err) => {
             if (err) console.log("Logging error failed");
         });
-        res.status(err.status || 500).json({"errorMessage" : err.message});
+        console.log(err.message);
+        res.status(err.status || 500).send({"errorMessage" : err.message});
     } 
     next();
 }

@@ -1,26 +1,26 @@
 const sampleUsers = [
     {
-        "userId": "CSEKAL2008",
-        "userName": "Mrs.Kaladevi",
-        "userPassword": "Helloworld",
+        "userId": "CSEMAR2008",
+        "userName": "Mr.Mark",
+        "userPassword": "Welcome123",
         "userDesignation": "professor",
         "userDesignationCode":"PROFR",
         "userDepartmentId":"CSE",
         "userDepartment":"Computer Science & Engineering"
     },
     {
-        "userId": "CSEANI2008",
-        "userName": "Mrs.Anitha Ilavarasi",
-        "userPassword": "Helloworld",
+        "userId": "CSEJOH2005",
+        "userName": "Mr.John Doe",
+        "userPassword": "Welcome123",
         "userDesignation": "professor",
         "userDesignationCode":"PROFR",
         "userDepartmentId":"CSE",
         "userDepartment":"Computer Science & Engineering"
     },
     {
-        "userId": "CSEJAY2008",
-        "userName": "Mrs.Jayanthi",
-        "userPassword": "Helloworld",
+        "userId": "CSEJEN2002",
+        "userName": "Mrs.Jenni",
+        "userPassword": "Welcome123",
         "userDesignation": "professor",
         "userDesignationCode":"PROFR",
         "userDepartmentId":"CSE",
@@ -28,8 +28,8 @@ const sampleUsers = [
     },
     {
         "userId": "A116965",
-        "userName": "Mr.kumar",
-        "userPassword": "Helloworld",
+        "userName": "Mr.William",
+        "userPassword": "Welcome123",
         "userDesignation": "student",
         "userDesignationCode":"STUD",
         "userDepartmentId":"CSE",
@@ -38,7 +38,7 @@ const sampleUsers = [
     {
         "userId": "GUESTID",
         "userName": "Guest",
-        "userPassword": "Helloworld",
+        "userPassword": "Welcome123",
         "userDesignation": "Guest",
         "userDesignationCode":"GUEST",
         "userDepartmentId":"Guest",
@@ -47,29 +47,29 @@ const sampleUsers = [
     {
         "userId": "ADMINID",
         "userName": "Admin",
-        "userPassword": "Helloworld",
+        "userPassword": "Welcome123",
         "userDesignation": "Admin",
         "userDesignationCode":"ADMIN",
         "userDepartmentId":"Admin",
         "userDepartment":"Admin"
     },
     {
-        "userId": "HODCSE",
-        "userName": "Mrs. Sathyabhama",
-        "userPassword": "Helloworld",
-        "userDesignation": "Departmant Head",
+        "userId": "CSEHEM2001",
+        "userName": "Mr.Hemsworth",
+        "userPassword": "Welcome123",
+        "userDesignation": "Head of the Department",
         "userDesignationCode":"HOD",
         "userDepartmentId":"CSE",
         "userDepartment":"Computer Science & Engineering"
     },
     {
-        "userId": "HODCVL",
-        "userName": "Mrs.Suganya",
-        "userPassword": "Helloworld",
-        "userDesignation": "Departmant Head",
+        "userId": "CIVILMAL2001",
+        "userName": "Mrs.Malinda",
+        "userPassword": "Welcome123",
+        "userDesignation": "Head of the Department",
         "userDesignationCode":"HOD",
         "userDepartmentId":"CIVIL",
-        "userDepartment":"civil engineering"
+        "userDepartment":"Civil Engineering"
     }
 ]
 

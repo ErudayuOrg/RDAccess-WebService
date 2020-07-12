@@ -43,6 +43,13 @@ const projectObj = {
         type: [{ type: String, required: true }],
         default:[]
     },
+    "projectContent": { 
+        type: [{
+            "subHeading":{ type: String, required: true },
+            "subContent":{ type: String, required: true }
+        }],
+        default:[]
+    },
     "history": { 
         type: [{
             "commitMessage":{ type: String, required: true },
