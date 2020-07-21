@@ -66,16 +66,43 @@ const departmentObj = {
     "researchLab": { 
         type: [{
             "researchLabId": { type: String, required: true },
-            "researchLabName": { type: String, required: true }
+            "researchLabName": { type: String, required: true },
+            "researchLabDesc": { type: String, required: true }
         }],
         default: []
+    }
+};
+
+const publicationObj = {
+    "publicationId":{ type:String, required:true },
+    "publicationType":{ type:String, required:true },
+    "publicationName": { type: String, required: true },
+    "paperTitle":{ type:String, required:true },
+    "publisherId":{ type:String, required:true },
+    "volumeNumber": { type: Number, required: true },
+    "yearOfPublication":{ type:Date, required: true},
+    "ISSN":{ type:String, required:true },
+    "indexing":{ type:String, required:true },
+    "role":{ type:String, required:true },
+    "pagesFrom":{ type:Number, required:true },
+    "pagesTo":{ type:Number, required:true },
+    "ISBN":{ type:String, required:true },
+    "contributionAs":{ type:String, required:true },
+    "issueNumber":{ type:Number, required:true },
+    "impactFactor":{ type:String, required:true },
+    "editionNumber":{ type:Number, required:true },
+    "DOIorURL":{ type:String, required:true },
+    "coAuthor":{
+        type: [{ type: String, required: true }],
+        default:[] 
     }
 };
 
 const connection = {};
 const usersSchema = new Schema(userObj, { collection: "Users", timestamps: true });
 const projectsSchema = new Schema(projectObj, { collection: "Projects", timestamps: true });
-const DepartmentsSchema = new Schema(departmentObj, { collection: "Departments", timestamps: true });
+const departmentsSchema = new Schema(departmentObj, { collection: "Departments", timestamps: true });
+const publicationsSchema = new Schema(publicationObj, { collection: "Publications", timestamps: true });
 
 connection.getCollection = collectionName => {
     return mongoose.connect("mongodb://localhost:27017/RandDDB", 
@@ -83,7 +110,8 @@ connection.getCollection = collectionName => {
         switch (collectionName){
             case COLLECTION_NAME.USERS: return db.model(collectionName, usersSchema);
             case COLLECTION_NAME.PROJECTS: return db.model(collectionName, projectsSchema);
-            case COLLECTION_NAME.DEPARTMENTS: return db.model(collectionName, DepartmentsSchema);
+            case COLLECTION_NAME.DEPARTMENTS: return db.model(collectionName, departmentsSchema);
+            case COLLECTION_NAME.PUBLICATIONS: return db.model(collectionName, publicationsSchema);
         }
     }).catch(err => {
         let error = new Error("Could not connect to database")

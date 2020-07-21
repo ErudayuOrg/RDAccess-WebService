@@ -19,6 +19,17 @@ projectService.insertScript = () => {
         })
 }
 
+
+projectService.getAllProjectsSummary = () => {
+    return projectModel.getAllProjects()
+        .then(response => {
+            if(response) {
+                return serviceUtils.mapProjectSummary(response);
+            }
+            throw new ApiError("Project not found", 404);
+        });
+}
+
 projectService.getProjectsByLabId = labId => {
     return projectModel.getProjectsByLabId(labId)
         .then(response => {
@@ -30,7 +41,13 @@ projectService.getProjectsByLabId = labId => {
 projectService.getProjectById = projectId => {
     return projectModel.getProjectById(projectId)
         .then(response => {
-            if(response) return response;
+            if(response){
+                let teamPromises = serviceUtils.mapIdToUser(response.team);
+                return Promise.all(teamPromises).then(team =>{
+                    response.team = team;
+                    return response;
+                });
+            } 
             throw new ApiError("Project not found", 404);
         });
 }
@@ -65,7 +82,13 @@ projectService.updateProjectById = (projectUpdates,projectId) => {
         })
         .then( projectDetails => projectModel.updateProjectById(projectDetails, projectId))
         .then(response => {
-            if(response) return {response, message :`Project #${response.projectId} updated successfully`};
+            if(response){
+                let teamPromises = serviceUtils.mapIdToUser(response.team);
+                return Promise.all(teamPromises).then(team =>{
+                    response.team = team;
+                    return {response, message :`Project #${response.projectId} updated successfully`};
+                });
+            } 
             throw new ApiError("Project not updated", 403);
         });
 }

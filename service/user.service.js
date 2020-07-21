@@ -79,10 +79,20 @@ userService.getProjectsByUserId = userId => {
         });
 } 
 
+userService.getPublicationsByUserId = userId => {
+    return userModel.getPublicationsByUserId(userId)
+        .then(response =>{
+            if(response) {
+                return serviceUtils.mapPublicationForUser(response);
+            }
+            throw new ApiError("User not found", 404);
+        });
+} 
+
 userService.getMatchingUserId = userId => {
     return userModel.getAllUserId(userId)
         .then(response => {
-            if(response) return response.map(data => data.userId);
+            if(response) return response.map(data => `${data.userId}-${data.userName}`);
             throw new ApiError("Cannot search", 500);
         });
 } 

@@ -1,11 +1,13 @@
 const COLLECTION_NAME = {
     USERS:"Users",
     PROJECTS:"Projects",
-    DEPARTMENTS:"Departments"
+    DEPARTMENTS:"Departments",
+    PUBLICATIONS:"Publications"
 };
 
 const ID_PREFIX = {
-    PROJECT:"PR"
+    PROJECT:"PRO",
+    PUBLICATION:"PUB"
 }
 
 const JWT_KEY = {

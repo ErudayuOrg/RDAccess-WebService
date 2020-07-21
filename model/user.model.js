@@ -34,9 +34,15 @@ userModel.getProjectsByUserId = userId => {
         .then(response =>  response);
 }
 
+userModel.getPublicationsByUserId = userId => {
+    return collection.getCollection(COLLECTION_NAME.PUBLICATIONS)
+        .then(model => model.find({publisherId:userId}))
+        .then(response =>  response);
+}
+
 userModel.getAllUserId = (userId) => {
     return collection.getCollection(COLLECTION_NAME.USERS)
-        .then(model => model.find({userId:{$regex: userId}},{userId:1,_id:0}).limit(5))
+        .then(model => model.find({userId:{$regex: userId}},{userId:1,userName:1,_id:0}).limit(5))
         .then(response =>  response);
 }
 
