@@ -1,6 +1,6 @@
 const express = require("express");
 const usersService = require("../service/user.service");
-const { userAuth, updateAuth } = require('../middleware/auth.middleware');
+const { userAuth, adminAuth } = require('../middleware/auth.middleware');
 
 const userRouter = express.Router();
 
@@ -43,7 +43,7 @@ userRouter.get("/match-userId/:userId", userAuth, (req, res, next) => {
     .catch(error => next(error));
 });
 
-userRouter.post("/create", userAuth, updateAuth, (req, res, next) => {
+userRouter.post("/create", userAuth, adminAuth, (req, res, next) => {
     usersService.createUser(req.body)
     .then(response => res.send(response))
     .catch(error => next(error));

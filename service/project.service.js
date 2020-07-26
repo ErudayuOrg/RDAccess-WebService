@@ -93,4 +93,12 @@ projectService.updateProjectById = (projectUpdates,projectId) => {
         });
 }
 
+projectService.getProjectNamesByUserId = (projectName, userId) => {
+    return projectModel.getAllprojectNames(projectName, userId)
+        .then(response => {
+            if(response) return response;
+            throw new ApiError("Cannot search", 500);
+        });
+} 
+
 module.exports = projectService;

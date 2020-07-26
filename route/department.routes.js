@@ -1,6 +1,6 @@
 const express = require("express");
 const departmentService = require("../service/department.service");
-const { userAuth, updateAuth } = require('../middleware/auth.middleware');
+const { userAuth, adminAuth } = require('../middleware/auth.middleware');
 
 const departmentRouter = express.Router();
 
@@ -31,13 +31,13 @@ departmentRouter.get("/over-all-snapshot", (req, res, next) => {
     .catch(error => next(error));
 });
 
-departmentRouter.post("/create-department", userAuth, updateAuth, (req, res, next) => {
+departmentRouter.post("/create-department", userAuth, adminAuth, (req, res, next) => {
     departmentService.createDepartment(req.body)
     .then(response => res.send(response))
     .catch(error => next(error));
 });
 
-departmentRouter.put("/create-research-lab/:departmentId", userAuth, updateAuth, (req, res, next) => {
+departmentRouter.put("/create-research-lab/:departmentId", userAuth, adminAuth, (req, res, next) => {
     departmentService.createResearchLab(req.body, req.params.departmentId)
     .then(response => res.send(response))
     .catch(error => next(error));

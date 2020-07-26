@@ -37,6 +37,7 @@ serviceUtils.generateId = ( prefix, count) =>{
     switch(prefix){
         case ID_PREFIX.PROJECT: return `${ID_PREFIX.PROJECT}${100000+count+1}`;
         case ID_PREFIX.PUBLICATION: return `${ID_PREFIX.PUBLICATION}${100000+count+1}`;
+        case ID_PREFIX.FUNDING: return `${ID_PREFIX.FUNDING}${100000+count+1}`;
     }
 }
 

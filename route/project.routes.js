@@ -43,4 +43,10 @@ projectRouter.put("/update/:projectId", userAuth, (req, res, next) => {
         .catch(error => next(error));
 });
 
+projectRouter.get("/search-project/:searchText", userAuth, (req, res, next) => {
+    projectService.getProjectNamesByUserId(req.params.searchText, req.auth.userId)
+        .then(response => res.status(201).send(response))
+        .catch(error => next(error));
+});
+
 module.exports = projectRouter;

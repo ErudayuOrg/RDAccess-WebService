@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const {ApiError} = require('../objectCreator/objectCreator');
-const {JWT_KEY, ROLE_WITH_UPADATE_AUTH} = require('../keys/constant');
+const {JWT_KEY, ROLE_WITH_ADMIN_AUTH} = require('../keys/constant');
 
 const userAuth = (req,res,next)=>{
    try {
@@ -13,9 +13,9 @@ const userAuth = (req,res,next)=>{
     }
 };
 
-const updateAuth = (req,res,next) =>{ 
+const adminAuth = (req,res,next) =>{ 
     try{
-        if( !ROLE_WITH_UPADATE_AUTH.includes(req.auth.userDesignationCode)) throw 'Forbidden Access';
+        if( !ROLE_WITH_ADMIN_AUTH.includes(req.auth.userDesignationCode)) throw 'Forbidden Access';
         next();
     }catch(error){
         throw new ApiError(error, 403);
@@ -23,4 +23,4 @@ const updateAuth = (req,res,next) =>{
 };
 
 
-module.exports = {userAuth, updateAuth};
+module.exports = {userAuth, adminAuth};

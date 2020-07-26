@@ -64,4 +64,12 @@ projectModel.getTeams = () => {
         .then(response =>  response);
 }
 
+projectModel.getAllprojectNames = (projectTitle, userId) => {
+    let projectRegex = new RegExp("^"+projectTitle, "i");
+    return collection.getCollection(COLLECTION_NAME.PROJECTS)
+        .then(model => model.find({projectTitle:projectRegex, team:userId },
+                                  {projectId:1,projectTitle:1,_id:0}).limit(5))
+        .then(response =>  response);
+}
+
 module.exports = projectModel;
