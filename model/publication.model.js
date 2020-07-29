@@ -18,7 +18,7 @@ publicationModel.insertSamplePublications = () => {
 
 publicationModel.getAllPublications = () => {
     return collection.getCollection(COLLECTION_NAME.PUBLICATIONS)
-        .then(model => model.find())
+        .then(model => model.find().sort({createdAt: -1}))
         .then(response =>  response);
 }
 

@@ -52,14 +52,14 @@ projectService.getProjectById = projectId => {
         });
 }
 
-projectService.createNewProject = projectDetails => {
+projectService.createNewProject = (projectDetails, userId) => {
     return projectModel.getAllProjects().then( allProjects => allProjects.length )
         .then( count => serviceUtils.generateId(ID_PREFIX.PROJECT,count) )
         .then( projectId =>{
             //ui should send createdAt date
             let history =[{
                             commitMessage:'Project created',
-                            userId : projectDetails.team[0],
+                            userId,
                             updatedDate : projectDetails.createdAt
                         }];
             projectDetails.history = history;
@@ -70,7 +70,7 @@ projectService.createNewProject = projectDetails => {
                 });
         })
         .then( response =>{
-            return {message :`Project #${response.projectId} created successfully`};
+            return {projectId: response.projectId, message :`Project #${response.projectId} created successfully`};
         });
 }
 

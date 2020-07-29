@@ -89,6 +89,17 @@ userService.getPublicationsByUserId = userId => {
         });
 } 
 
+userService.getFundingProjectByUserId = userId => {
+    return userModel.getFundingProjectByUserId(userId)
+        .then(response =>{
+            if(response) {
+                console.log(response);
+                return serviceUtils.mapFundingProjectForUser(response);
+            }
+            throw new ApiError("User not found", 404);
+        });
+}
+
 userService.getMatchingUserId = userId => {
     return userModel.getAllUserId(userId)
         .then(response => {

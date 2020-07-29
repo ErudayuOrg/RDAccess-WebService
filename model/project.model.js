@@ -18,7 +18,7 @@ projectModel.insertSampleProjects = () => {
 
 projectModel.getProjectsByLabId = labId => {
     return collection.getCollection(COLLECTION_NAME.PROJECTS)
-        .then(model => model.find({projectLab:labId}))
+        .then(model => model.find({projectLab:labId}).sort({createdAt: -1}))
         .then(response =>  response);
 }
 
@@ -30,7 +30,7 @@ projectModel.getProjectById = projectId => {
 
 projectModel.getAllProjects = () => {
     return collection.getCollection(COLLECTION_NAME.PROJECTS)
-        .then(model => model.find())
+        .then(model => model.find().sort({createdAt: -1}))
         .then(response =>  response);
 }
 

@@ -37,6 +37,12 @@ userRouter.get("/publications/:userId", userAuth, (req, res, next) => {
     .catch(error => next(error));
 });
 
+userRouter.get("/funding-project/:userId", userAuth, (req, res, next) => {
+    usersService.getFundingProjectByUserId(req.params.userId)
+    .then(response => res.send(response))
+    .catch(error => next(error));
+});
+
 userRouter.get("/match-userId/:userId", userAuth, (req, res, next) => {
     usersService.getMatchingUserId(req.params.userId)
     .then(response => res.send(response))

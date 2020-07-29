@@ -32,7 +32,7 @@ projectRouter.get("/overview/:projectId", userAuth, (req, res, next) => {
 });
 
 projectRouter.post("/create-new", userAuth, (req, res, next) => {
-    projectService.createNewProject(req.body)
+    projectService.createNewProject(req.body, req.auth.userId)
         .then(response => res.status(201).send(response))
         .catch(error => next(error));
 });

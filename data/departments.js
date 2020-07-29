@@ -12,6 +12,11 @@ const sampleDepartments = [
                 "researchLabId": "cser2",
                 "researchLabName": "SONA MINE",
                 "researchLabDesc": "This Centre is an interdisciplinary research center focusing on large-scale data analysis and healthcare projects."
+            },
+            {
+                "researchLabId": "cser3",
+                "researchLabName": "Individual",
+                "researchLabDesc": "Department staff's individual or stand alone projects will be available under this section."
             }
         ]
     },
@@ -23,6 +28,11 @@ const sampleDepartments = [
                 "researchLabId": "civilr1",
                 "researchLabName": "SONA COIN",
                 "researchLabDesc": "To contribute to the society through innovations in concrete through effective usage of industrial wastes."
+            },
+            {
+                "researchLabId": "civilr2",
+                "researchLabName": "Individual",
+                "researchLabDesc": "Department staff's individual or stand alone projects will be available under this section."
             }
         ]
     },
@@ -40,6 +50,11 @@ const sampleDepartments = [
                 "researchLabName": "VLSI Comm",
                 "researchLabDesc": "To design, develop and realize the intelligent electronics circuit systems, FPGA based VLSI Design and embedded systems for industrial applications"
 
+            },
+            {
+                "researchLabId": "ecer3",
+                "researchLabName": "Individual",
+                "researchLabDesc": "Department staff's individual or stand alone projects will be available under this section."
             }
         ]
     },
@@ -68,6 +83,11 @@ const sampleDepartments = [
                 "researchLabId": "eeer4",
                 "researchLabName": "Centre of Excellence in Industrial Automation",
                 "researchLabDesc": "To develop centre of excellence in high voltage and power system engineering."
+            },
+            {
+                "researchLabId": "eeer5",
+                "researchLabName": "Individual",
+                "researchLabDesc": "Department staff's individual or stand alone projects will be available under this section."
             }
         ]
     },
@@ -79,6 +99,11 @@ const sampleDepartments = [
                 "researchLabId": "ftr1",
                 "researchLabName": "SONA REACH",
                 "researchLabDesc": "To develop centre of excellence in high voltage and power system engineering."
+            },
+            {
+                "researchLabId": "ftr2",
+                "researchLabName": "Individual",
+                "researchLabDesc": "Department staff's individual or stand alone projects will be available under this section."
             }
         ]
     },
@@ -97,6 +122,11 @@ const sampleDepartments = [
                 "researchLabName": "Centre for Web Services and Development",
                 "researchLabDesc": "To develop centre of excellence in high voltage and power system engineering."
 
+            },
+            {
+                "researchLabId": "itr3",
+                "researchLabName": "Individual",
+                "researchLabDesc": "Department staff's individual or stand alone projects will be available under this section."
             }
         ]
     },
@@ -121,6 +151,11 @@ const sampleDepartments = [
                 "researchLabName": "METFORM",
                 "researchLabDesc": "To develop centre of excellence in high voltage and power system engineering."
 
+            },
+            {
+                "researchLabId": "mechr4",
+                "researchLabName": "Individual",
+                "researchLabDesc": "Department staff's individual or stand alone projects will be available under this section."
             }
         ]
     }

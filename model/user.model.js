@@ -30,13 +30,20 @@ userModel.getUserById = userId => {
 
 userModel.getProjectsByUserId = userId => {
     return collection.getCollection(COLLECTION_NAME.PROJECTS)
-        .then(model => model.find({team:userId}))
+        .then(model => model.find({team:userId}).sort({createdAt: -1}))
         .then(response =>  response);
 }
 
 userModel.getPublicationsByUserId = userId => {
     return collection.getCollection(COLLECTION_NAME.PUBLICATIONS)
-        .then(model => model.find({publisherId:userId}))
+        .then(model => model.find({publisherId:userId}).sort({createdAt: -1}))
+        .then(response =>  response);
+}
+
+userModel.getFundingProjectByUserId = userId => {
+    console.log(userId);
+    return collection.getCollection(COLLECTION_NAME.FUNDING_PROJECTS)
+        .then(model => model.find({ $or:[ {investigator:userId}, {coInvestigator:userId} ] }).sort({createdAt: -1}))
         .then(response =>  response);
 }
 

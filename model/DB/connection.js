@@ -34,7 +34,7 @@ const projectObj = {
     "projectTitle": { type: String, required: true },
     "projectSummary": { type: String, required: true },
     "views":{ type: Number, default: 0 },
-    "status":{ type: String, default: 'Ongoing' },
+    "status":{ type: String, default: '01' },
     "referenceLink": { 
         type: [{ type: String, required: true }],
         default:[]
@@ -57,7 +57,7 @@ const projectObj = {
             "updatedDate":{ type:Date, default:Date.now}
         }],
         required:true
-    },
+    }
 };
 
 const departmentObj = {
@@ -128,19 +128,65 @@ const fundingObj = {
     },
 };
 
-const fundedProjectObj = {
-    "fundedProjectId": { type: String, required: true },
+const fundingProjectObj = {
+    "fundingProjectId": { type: String, required: true },
     "nameOfGrant": { type: String, required: true },
-    "grantGivingOrganisation": { type: String, required: true },
-    "descriptionOfScheme": { type: String, required: true },
+    "fundingOrganisation": { type: String, required: true },
+    "fundingType": { type: String, required: true },
     "project": {  
-        type: [{
+        type: {
             "projectTitle":{ type: String, required: true },
             "projectId":{ type: String, required: true }
-        }],
+        },
         required:true
     },
-    "submittedDate": { type: Date, required: true },
+    "investigator": { type: String, required: true },
+    "coInvestigator": { 
+        type: [{ type: String, required: true }],
+        default: [] 
+    },
+    "appliedFundingId": { type: String, default: '' },   
+    "isReceivedFund": { type: Boolean, default: false },
+    "summary": { type: String, default: '' },    
+    "keywords": { 
+        type: [{ type: String, required: true }],
+        default:[]
+    },
+    "fundingAmount": { 
+        type: { 
+            "received":{ type: String },
+            "consumable":{ type: String },
+            "nonConsumable":{ type: String }
+         },
+        default:null
+    },
+    "fundDates":{  
+       type :{  
+           "received":{ type: String },
+            "start":{ type: String},
+            "end":{ type: String}
+         },
+        default:null
+    }, 
+    "applicationChecks":{
+        type: { 
+            "filled":{ type: String, default: false },
+            "hod":{ type: String, default: false },
+            "proposal":{ type: String, default: false },
+            "technical":{ type: String, default: false },
+            "principal":{ type: String, default: false }
+        },
+        default:null
+    },
+    "status": { type: String, default: '01' }, 
+    "history": { 
+        type: [{
+            "commitMessage":{ type: String, required: true },
+            "userId":{ type: String, required: true },
+            "updatedDate":{ type:Date, default:Date.now}
+        }],
+        required:true
+    }
 };
 
 const notificationObj = {
@@ -155,7 +201,7 @@ const projectsSchema = new Schema(projectObj, { collection: "Projects", timestam
 const departmentsSchema = new Schema(departmentObj, { collection: "Departments", timestamps: true });
 const publicationsSchema = new Schema(publicationObj, { collection: "Publications", timestamps: true });
 const fundingsSchema = new Schema(fundingObj, { collection: "Fundings", timestamps: true });
-const fundedProjectsSchema = new Schema(fundedProjectObj, { collection: "Funded_projects", timestamps: true });
+const fundingProjectsSchema = new Schema(fundingProjectObj, { collection: "Funding_projects", timestamps: true });
 const notificationsSchema = new Schema(notificationObj, { collection: "Notifications", timestamps: true });
 
 
@@ -169,7 +215,7 @@ connection.getCollection = collectionName => {
             case COLLECTION_NAME.DEPARTMENTS: return db.model(collectionName, departmentsSchema);
             case COLLECTION_NAME.PUBLICATIONS: return db.model(collectionName, publicationsSchema);
             case COLLECTION_NAME.FUNDINGS: return db.model(collectionName, fundingsSchema);
-            case COLLECTION_NAME.FUNDED_PROJECTS: return db.model(collectionName, fundedProjectsSchema);
+            case COLLECTION_NAME.FUNDING_PROJECTS: return db.model(collectionName, fundingProjectsSchema);
             case COLLECTION_NAME.NOTIFICATIONS: return db.model(collectionName, notificationsSchema);
         }
     }).catch(err => {
