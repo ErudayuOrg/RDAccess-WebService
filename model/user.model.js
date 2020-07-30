@@ -41,7 +41,6 @@ userModel.getPublicationsByUserId = userId => {
 }
 
 userModel.getFundingProjectByUserId = userId => {
-    console.log(userId);
     return collection.getCollection(COLLECTION_NAME.FUNDING_PROJECTS)
         .then(model => model.find({ $or:[ {investigator:userId}, {coInvestigator:userId} ] }).sort({createdAt: -1}))
         .then(response =>  response);

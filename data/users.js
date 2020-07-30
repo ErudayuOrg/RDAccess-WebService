@@ -75,7 +75,7 @@ const sampleUsers = [
 
 //userDesignationCode:
 //STUDT => student,
-//GUEST => princi, mangement, others..
+//MNGMT => princi, mangement, others..
 
 // PROFR => All professor,
 // RESER => researchScholar, 

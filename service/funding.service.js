@@ -77,6 +77,15 @@ fundingService.getFundingProjectById = fundingProjectId => {
         });
 }
 
+fundingService.getFundingsByProjectId = projectId => {
+    return fundingModel.getFundingsByProjectId(projectId)
+        .then(response => {
+            if(response) return serviceUtils.mapFundingProjectForUser(response);    
+            throw new ApiError("Funding not found", 404);
+        });
+}
+
+
 fundingService.addReceivedFundingProject = (fundingProjectDetails, userId) => {
     return fundingModel.getAllFundingProjects().then( allFundingProjects => allFundingProjects.length )
         .then( count => serviceUtils.generateId(ID_PREFIX.FUNDING_PROJECTS, count) )
@@ -110,6 +119,41 @@ fundingService.updateReceivedFPById = (fpUpdates, fundingProjectId) => {
             } 
             throw new ApiError("Funding project not updated", 403);
         }) 
+}
+
+fundingService.addFolderPathApplication = (filledApplication, fundingProjectId) => {
+    return fundingModel.addFolderPathApplication(filledApplication, fundingProjectId)
+        .then(response =>{ if(response){
+                return {
+                        status :'02',
+                        applicationChecks:{
+                            filled: true,
+                            hod: false,
+                            principal: false,
+                            proposal: false,
+                            technical: false ,   
+                        }
+                    }
+            }
+        })
+        .then (updates =>{
+           return fundingModel.updateFundingProjectById(updates, fundingProjectId)
+        })
+        .then(response => {
+            if(response){
+                return {response, message :`Filled Application uploaded Successfully`};
+            } 
+            throw new ApiError("Filled Application not uploaded", 403);
+        }) 
+}
+
+fundingService.addFolderPathAck = (acknowlegdment, fundingProjectId) => {
+    return fundingModel.addFolderPathAck(acknowlegdment, fundingProjectId)
+        .then(response => {
+            console.log(response);
+            if(response) return response;    
+            throw new ApiError("File not uploaded", 500);
+        });
 }
 
 module.exports = fundingService;

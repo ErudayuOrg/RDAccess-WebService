@@ -48,6 +48,12 @@ fundingModel.getFundingProjectById = fundingProjectId => {
         .then(response =>  response);
 }
 
+fundingModel.getFundingsByProjectId = projectId => {
+    return collection.getCollection(COLLECTION_NAME.FUNDING_PROJECTS)
+        .then(model => model.find({'project.projectId':projectId}))
+        .then(response =>  response);
+}
+
 fundingModel.addReceivedFundingProject = receivedFundingProjectDetails => {
     return collection.getCollection(COLLECTION_NAME.FUNDING_PROJECTS)
         .then(model => model.create(receivedFundingProjectDetails))
@@ -63,6 +69,18 @@ fundingModel.getFPHistoryById = fundingProjectId =>{
 fundingModel.updateFundingProjectById = (fundingProject, fundingProjectId) => {
     return collection.getCollection(COLLECTION_NAME.FUNDING_PROJECTS)
         .then(model => model.findOneAndUpdate({fundingProjectId},{$set:{...fundingProject}},{new:true}))
+        .then(response =>  response);
+}
+
+fundingModel.addFolderPathApplication = (filledApplication, fundingProjectId) => {
+    return collection.getCollection(COLLECTION_NAME.FUNDING_PROJECTS)
+        .then(model => model.findOneAndUpdate({fundingProjectId},{$set:{'documents.filledApplication':filledApplication}},{new:true}))
+        .then(response =>  response);
+}
+
+fundingModel.addFolderPathAck = (acknowlegdment, fundingProjectId) => {
+    return collection.getCollection(COLLECTION_NAME.FUNDING_PROJECTS)
+        .then(model => model.findOneAndUpdate({fundingProjectId},{$set:{'documents.acknowlegdment':acknowlegdment}},{new:true}))
         .then(response =>  response);
 }
 

@@ -170,15 +170,27 @@ const fundingProjectObj = {
     }, 
     "applicationChecks":{
         type: { 
-            "filled":{ type: String, default: false },
-            "hod":{ type: String, default: false },
-            "proposal":{ type: String, default: false },
-            "technical":{ type: String, default: false },
-            "principal":{ type: String, default: false }
+            "filled":{ type: Boolean, default: false },
+            "hod":{ type: Boolean, default: false },
+            "proposal":{ type: Boolean, default: false },
+            "technical":{ type: Boolean, default: false },
+            "principal":{ type: Boolean, default: false }
         },
         default:null
     },
     "status": { type: String, default: '01' }, 
+    "documents":{
+        type:{
+            acknowlegdment:[{
+                fileName:{ type:String },
+                path:{ type:String }
+            }],
+            filledApplication:[{
+                fileName:{ type:String},
+                path:{type:String}
+            }]
+        }
+    },
     "history": { 
         type: [{
             "commitMessage":{ type: String, required: true },
