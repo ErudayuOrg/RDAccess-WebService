@@ -36,13 +36,13 @@ const sampleUsers = [
         "userDepartment":"Computer Science & Engineering"
     },
     {
-        "userId": "GUESTID",
-        "userName": "Guest",
+        "userId": "PRINCIID",
+        "userName": "Principal",
         "userPassword": "Welcome123",
-        "userDesignation": "Guest",
-        "userDesignationCode":"GUEST",
-        "userDepartmentId":"Guest",
-        "userDepartment":"Guest"
+        "userDesignation": "Principal",
+        "userDesignationCode":"MNGMT",
+        "userDepartmentId":"mngmt",
+        "userDepartment":"Mngmt"
     },
     {
         "userId": "ADMINID",

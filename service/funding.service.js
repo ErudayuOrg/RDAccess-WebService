@@ -149,11 +149,17 @@ fundingService.addFolderPathApplication = (filledApplication, fundingProjectId) 
 
 fundingService.addFolderPathAck = (acknowlegdment, fundingProjectId) => {
     return fundingModel.addFolderPathAck(acknowlegdment, fundingProjectId)
+        .then(response =>{ if(response){ return {status :'04'} }
+        })
+        .then (updates =>{
+           return fundingModel.updateFundingProjectById(updates, fundingProjectId)
+        })
         .then(response => {
-            console.log(response);
-            if(response) return response;    
-            throw new ApiError("File not uploaded", 500);
-        });
+            if(response){
+                return {response, message :`Acknowledgement uploaded Successfully`};
+            } 
+            throw new ApiError("Acknowledgement not uploaded", 403);
+        }) 
 }
 
 module.exports = fundingService;

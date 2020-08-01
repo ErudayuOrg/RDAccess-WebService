@@ -1,8 +1,10 @@
 const express = require("express");
 const path = require('path');
+
 const fundingService = require("../service/funding.service");
+
 const {userAuth, adminAuth} = require('../middleware/auth.middleware');
-const {upload, setPathFilledApplication} = require('../middleware/file-system.middleware');
+const {upload, setPathFilledApplication, setPathAck} = require('../middleware/file-system.middleware');
 
 
 const fundingRouter = express.Router();
@@ -58,7 +60,11 @@ fundingRouter.put("/funding-project/update/:fundingProjectId", userAuth, (req, r
         .catch(error => next(error));
 });
 
-fundingRouter.put("/funding-project/filled-uplaod/:fundingProjectId", userAuth, setPathFilledApplication, upload.single('file'), (req, res, next) => {
+fundingRouter.put("/funding-project/filled-uplaod/:fundingProjectId",
+                userAuth,
+                setPathFilledApplication,
+                upload.single('file'),
+                (req, res, next) => {
     const filledApplication = {
         path : req.file.destination,
         fileName: req.file.filename
@@ -68,7 +74,21 @@ fundingRouter.put("/funding-project/filled-uplaod/:fundingProjectId", userAuth, 
     .catch(error => next(error));
 });
 
-fundingRouter.post("/funding-project/filled-download", (req, res, next) => {
+fundingRouter.put("/funding-project/ack-uplaod/:fundingProjectId",
+                userAuth,
+                setPathAck, 
+                upload.single('file'), 
+                (req, res, next) => {
+    const ack = {
+        path : req.file.destination,
+        fileName: req.file.filename
+    }
+    fundingService.addFolderPathAck(ack, req.params.fundingProjectId)
+    .then(response => res.status(201).send(response))
+    .catch(error => next(error));
+});
+
+fundingRouter.post("/funding-project/download", userAuth, (req, res, next) => {
     const docPath = path.join(__dirname,`../`) + req.body.path;
     res.sendFile(docPath);
 });

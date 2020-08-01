@@ -3,7 +3,6 @@ const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) =>{
-        console.log(req);
         const path = `./FileSystem/${req.folderPath}`;
         let folderNames = path.split('/');
         let currentPath = '.';
